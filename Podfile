@@ -7,4 +7,9 @@ target 'SChat' do
 
   # Pods for SChat
 	pod 'IQKeyboardManagerSwift'
+	pod 'Firebase/Core'
+	pod 'Firebase/Auth'
+	pod 'Firebase/Storage'
+	pod 'Firebase/Firestore'
+	pod 'MessageKit'
 end

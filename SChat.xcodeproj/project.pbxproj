@@ -16,6 +16,13 @@
 		1B9C28A822A22AAF00E572F7 /* SMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9C28A722A22AAF00E572F7 /* SMessage.swift */; };
 		1B9C28AA22A233FD00E572F7 /* SBubbleChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9C28A922A233FD00E572F7 /* SBubbleChatView.swift */; };
 		5BEE66AF7409F49053260247 /* Pods_SChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536A9809CF766DB95767E381 /* Pods_SChat.framework */; };
+		6153D16022AE2881008D293D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6153D15F22AE2881008D293D /* GoogleService-Info.plist */; };
+		6153D16222AE2A5A008D293D /* SUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6153D16122AE2A5A008D293D /* SUser.swift */; };
+		6153D16422AE2CD9008D293D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6153D16322AE2CD9008D293D /* Message.swift */; };
+		6153D16622AE321B008D293D /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6153D16522AE321B008D293D /* Room.swift */; };
+		6153D16822AE3C5F008D293D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6153D16722AE3C5F008D293D /* LoginViewController.swift */; };
+		6153D16B22AE42A9008D293D /* RoomChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6153D16A22AE42A9008D293D /* RoomChatViewController.swift */; };
+		6153D16E22AE5073008D293D /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6153D16D22AE5073008D293D /* AppSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +38,13 @@
 		1B9C28A722A22AAF00E572F7 /* SMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMessage.swift; sourceTree = "<group>"; };
 		1B9C28A922A233FD00E572F7 /* SBubbleChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBubbleChatView.swift; sourceTree = "<group>"; };
 		536A9809CF766DB95767E381 /* Pods_SChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6153D15F22AE2881008D293D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6153D16122AE2A5A008D293D /* SUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUser.swift; sourceTree = "<group>"; };
+		6153D16322AE2CD9008D293D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		6153D16522AE321B008D293D /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		6153D16722AE3C5F008D293D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6153D16A22AE42A9008D293D /* RoomChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomChatViewController.swift; sourceTree = "<group>"; };
+		6153D16D22AE5073008D293D /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		A4F4C0FDE33A99D2C474B5A4 /* Pods-SChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SChat/Pods-SChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +81,8 @@
 		1B9C289122A229D300E572F7 /* SChat */ = {
 			isa = PBXGroup;
 			children = (
+				6153D16C22AE5067008D293D /* Helper */,
+				6153D16922AE3C64008D293D /* ViewController */,
 				1B9C28A422A22A6A00E572F7 /* Model */,
 				1B9C289222A229D300E572F7 /* AppDelegate.swift */,
 				1B9C28A922A233FD00E572F7 /* SBubbleChatView.swift */,
@@ -75,6 +91,7 @@
 				1B9C289622A229D300E572F7 /* Main.storyboard */,
 				1B9C289922A229D500E572F7 /* Assets.xcassets */,
 				1B9C289B22A229D500E572F7 /* LaunchScreen.storyboard */,
+				6153D15F22AE2881008D293D /* GoogleService-Info.plist */,
 				1B9C289E22A229D500E572F7 /* Info.plist */,
 			);
 			path = SChat;
@@ -83,7 +100,10 @@
 		1B9C28A422A22A6A00E572F7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6153D16122AE2A5A008D293D /* SUser.swift */,
 				1B9C28A722A22AAF00E572F7 /* SMessage.swift */,
+				6153D16322AE2CD9008D293D /* Message.swift */,
+				6153D16522AE321B008D293D /* Room.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -94,6 +114,23 @@
 				536A9809CF766DB95767E381 /* Pods_SChat.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6153D16922AE3C64008D293D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6153D16722AE3C5F008D293D /* LoginViewController.swift */,
+				6153D16A22AE42A9008D293D /* RoomChatViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		6153D16C22AE5067008D293D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				6153D16D22AE5073008D293D /* AppSettings.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		868CD3A4AEE21212ACFD3D78 /* Pods */ = {
@@ -117,6 +154,7 @@
 				1B9C288C22A229D300E572F7 /* Frameworks */,
 				1B9C288D22A229D300E572F7 /* Resources */,
 				A0A67BDA5B9B412728F21C00 /* [CP] Embed Pods Frameworks */,
+				614D219417DB768DFC12C8E7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -166,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B9C289D22A229D500E572F7 /* LaunchScreen.storyboard in Resources */,
+				6153D16022AE2881008D293D /* GoogleService-Info.plist in Resources */,
 				1B9C289A22A229D500E572F7 /* Assets.xcassets in Resources */,
 				1B9C289822A229D300E572F7 /* Main.storyboard in Resources */,
 			);
@@ -174,6 +213,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		614D219417DB768DFC12C8E7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SChat/Pods-SChat-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SChat/Pods-SChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		67E0A93FD853134F3A1BD521 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -199,11 +260,31 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SChat/Pods-SChat-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageInputBar/MessageInputBar.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageInputBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -217,11 +298,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6153D16822AE3C5F008D293D /* LoginViewController.swift in Sources */,
 				1B9C28A822A22AAF00E572F7 /* SMessage.swift in Sources */,
 				1B9C289522A229D300E572F7 /* ViewController.swift in Sources */,
+				6153D16622AE321B008D293D /* Room.swift in Sources */,
+				6153D16222AE2A5A008D293D /* SUser.swift in Sources */,
 				1B9C28AA22A233FD00E572F7 /* SBubbleChatView.swift in Sources */,
 				1B963F3C22A2CA0C0068A5BE /* MessageTableViewCell.swift in Sources */,
+				6153D16E22AE5073008D293D /* AppSettings.swift in Sources */,
 				1B9C289322A229D300E572F7 /* AppDelegate.swift in Sources */,
+				6153D16422AE2CD9008D293D /* Message.swift in Sources */,
+				6153D16B22AE42A9008D293D /* RoomChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

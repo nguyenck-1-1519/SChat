@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>815592212139-n51scdnffqj4knai0t734nv4tbcdr8av.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.815592212139-n51scdnffqj4knai0t734nv4tbcdr8av</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDCcLmsivZ_e9fsxf3kYO-W3XqG7LeH6qc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>815592212139</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>shin.SChat</string>
+	<key>PROJECT_ID</key>
+	<string>schat-8b425</string>
+	<key>STORAGE_BUCKET</key>
+	<string>schat-8b425.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:815592212139:ios:0ac160345fb08862</string>
+	<key>DATABASE_URL</key>
+	<string>https://schat-8b425.firebaseio.com</string>
+</dict>
+</plist>
