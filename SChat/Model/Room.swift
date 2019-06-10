@@ -28,6 +28,18 @@ struct Room {
     }
 }
 
+extension Room: DataReference {
+    var representation: [String : Any] {
+        var rep = ["name": name]
+        
+        if let id = id {
+            rep["id"] = id
+        }
+        
+        return rep
+    }
+}
+
 extension Room: Comparable {
     static func < (lhs: Room, rhs: Room) -> Bool {
         return lhs.name < rhs.name

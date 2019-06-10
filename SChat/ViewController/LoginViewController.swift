@@ -16,11 +16,6 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.isEnabled = false
-
-        if let user = Auth.auth().currentUser {
-            onLoginSuccess()
-        }
     }
 
     func signIn() {
@@ -40,8 +35,10 @@ class LoginViewController: UIViewController {
 
     func onLoginSuccess() {
         AppSettings.currentUserName = nicknameTextField.text ?? ""
-        let nav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nav")
-        present(nav, animated: true, completion: nil)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let window = appDelegate.window {
+            let nav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nav")
+            window.rootViewController = nav
+        }
     }
 
     @IBAction func onNicknameTextFieldDidChanged(_ sender: UITextField) {

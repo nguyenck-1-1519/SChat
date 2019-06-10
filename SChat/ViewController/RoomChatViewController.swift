@@ -16,6 +16,7 @@ class RoomChatViewController: UIViewController {
 
     var currentUser: User!
     var rooms = [Room]()
+    var currentRoomAlertController: UIAlertController?
 
     private let roomPath = "rooms"
     private var db = Firestore.firestore()
@@ -23,9 +24,17 @@ class RoomChatViewController: UIViewController {
     private var roomReference: CollectionReference {
         return db.collection(roomPath)
     }
+    
+    deinit {
+        print("Room View controller deinit")
+        roomListener?.remove()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if currentUser == nil {
+            currentUser = Auth.auth().currentUser
+        }
         // config navigation bar
         title = AppSettings.currentUserName
         let addRoomButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAddRoomButtonClicked))
@@ -36,7 +45,7 @@ class RoomChatViewController: UIViewController {
         //register listener
         roomListener = roomReference.addSnapshotListener({[weak self] (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
-                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                print("Error listening for room updates: \(error?.localizedDescription ?? "No error")")
                 return
             }
 
@@ -48,23 +57,77 @@ class RoomChatViewController: UIViewController {
 
     // MARK: Navigation bar button action
     @objc func onAddRoomButtonClicked() {
+        let ac = UIAlertController(title: "Create a new room", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        ac.addTextField { field in
+            field.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+            field.enablesReturnKeyAutomatically = true
+            field.autocapitalizationType = .words
+            field.clearButtonMode = .whileEditing
+            field.placeholder = "Room name"
+            field.returnKeyType = .done
+        }
 
+        let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak self] _ in
+            self?.createRoom()
+        })
+        createAction.isEnabled = false
+        ac.addAction(createAction)
+        ac.preferredAction = createAction
+
+        present(ac, animated: true) {
+            ac.textFields?.first?.becomeFirstResponder()
+        }
+        currentRoomAlertController = ac
     }
 
     @objc func onSignOutButtonClicked() {
         let alert = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { [weak self] _ in
             do {
                 try Auth.auth().signOut()
+                self?.onLogOut()
             } catch {
                 print("Error signing out: \(error.localizedDescription)")
             }
         }))
         present(alert, animated: true, completion: nil)
     }
+    
+    @objc private func textFieldDidChange(_ field: UITextField) {
+        guard let ac = currentRoomAlertController else {
+            return
+        }
+        
+        ac.preferredAction?.isEnabled = field.hasText
+    }
+    
+    func onLogOut() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let window = appDelegate.window {
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+            window.rootViewController = vc
+        }
+    }
 
-    // MARK: handle action
+    // MARK: handle firestore action
+    func createRoom() {
+        guard let ac = currentRoomAlertController else {
+            return
+        }
+        
+        guard let roomName = ac.textFields?.first?.text else {
+            return
+        }
+        
+        let room = Room(name: roomName)
+        roomReference.addDocument(data: room.representation) { error in
+            if let e = error {
+                print("Error saving room: \(e.localizedDescription)")
+            }
+        }
+    }
+    
     func handleDocumentChange(change: DocumentChange) {
         guard let roomChange = Room(document: change.document) else {
             return
@@ -138,6 +201,11 @@ extension RoomChatViewController: UITableViewDataSource {
 // MARK: TableViewDelegate
 extension RoomChatViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // do sthg
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else {
+            return
+        }
+        vc.user = currentUser
+        vc.room = rooms[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -9,6 +9,13 @@
 import Foundation
 
 struct AppSettings {
-
-    static var currentUserName: String = ""
+    static var currentUserNameKey = "CurrentUserName"
+    static var currentUserName: String {
+        get {
+            return UserDefaults.standard.string(forKey: currentUserNameKey) ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: currentUserNameKey)
+        }
+    }
 }

@@ -21,6 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
         IQKeyboardManager.shared.enableAutoToolbar = false
         FirebaseApp.configure()
+        
+        // check auth
+        if let _ = Auth.auth().currentUser {
+            let nav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "nav")
+            window?.rootViewController = nav
+        }
         return true
     }
 }

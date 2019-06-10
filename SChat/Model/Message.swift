@@ -7,40 +7,68 @@
 //
 
 import Foundation
+import MessageKit
+import FirebaseAuth
 import FirebaseFirestore
 
-struct Message {
+struct Message: MessageType {
+    
+    var kind: MessageKind {
+        return .text(content ?? "")
+    }
+    
+    var sender: Sender
+    
+    var messageId: String {
+        return id ?? UUID().uuidString
+    }
+    
     let id: String?
     var content: String?
-    var createdDate: Date
+    var sentDate: Date
     let senderId: String
     let senderName: String
 
-    init(content: String, createdDate: Date, senderId: String, senderName: String) {
-        self.id = nil
+    init(user: User, content: String) {
+        sender = Sender(id: user.uid, displayName: AppSettings.currentUserName)
         self.content = content
-        self.createdDate = createdDate
-        self.senderId = senderId
-        self.senderName = senderName
+        sentDate = Date()
+        senderId = user.uid
+        senderName = AppSettings.currentUserName
+        id = nil
     }
 
     init?(document: QueryDocumentSnapshot) {
         let data = document.data()
-        guard let content = data["content"] as? String, let createdDate = data["created"] as? Date,
+        guard let content = data["content"] as? String, let timestamp = data["created"] as? Date,
             let senderId = data["senderId"] as? String, let senderName = data["senderName"] as? String else {
             return nil
         }
         self.content = content
-        self.createdDate = createdDate
+        self.sentDate = timestamp
         self.senderId = senderId
         self.senderName = senderName
         self.id = document.documentID
+        self.sender = Sender(id: senderId, displayName: AppSettings.currentUserName)
+    }
+}
+
+extension Message: DataReference {
+    var representation: [String : Any] {
+        let rep: [String : Any] = [
+            "created": sentDate,
+            "senderId": sender.id,
+            "senderName": sender.displayName,
+            "content": content
+        ]
+        
+        return rep
     }
 }
 
 extension Message: Comparable {
     static func < (lhs: Message, rhs: Message) -> Bool {
-        return lhs.createdDate < rhs.createdDate
+        return lhs.sentDate < rhs.sentDate
     }
 
     static func == (lhs: Message, rhs: Message) -> Bool {
